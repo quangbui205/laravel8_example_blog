@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,29 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::prefix('/post') -> group(function () {
-//    Route::get('/index', [PostController::class, 'list'])->name('user.list');
-//    Route::get('/create', [PostController::class, 'create'])->name('user.create');
-//    Route::post('/create', [PostController::class, 'handleCreate'])->name('user.create');
-//    Route::get('/info/{id}', [PostController::class, 'info'])->name('user.info')->where('id', '[0,9]+');
-//    Route::put('/update/{id?}', 'PostController@update')->where('id', '[0, 9]+');
-//    Route::delete('/delete/{id?}', 'PostController@delete')->where('id', '[0, 9]+');
-//});
+Route::prefix('/post') -> group(function () {
+    Route::get('/', function () {
+        return 'Post Index';
+    })->name('post.index');
+
+    Route::get('/create', function () {
+        return 'Post Create';
+    })->name('post.add');
+
+    Route::post('/create', [PostController::class, 'create'])
+        ->name('post.create');
+
+    Route::get('/detail/{id}', function (Request $request, $id) {
+        return 'Post detail: ' . $id;
+    })->name('post.detail')->where('id', '[0-9]+');
+
+    Route::get('/update/{id}', function (Request $request, $id) {
+        return 'Post update: ' . $id;
+    })->name('post.edit')->where('id', '[0-9]+');
+
+    Route::post('/update/{id}', [PostController::class, 'info'])
+        ->name('post.update')->where('id', '[0-9]+');
+
+    Route::post('/delete/{id}', [PostController::class, 'delete'])
+        ->name('post.delete')->where('id', '[0-9]+');
+});
