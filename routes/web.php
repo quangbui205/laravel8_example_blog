@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,26 +19,22 @@ Route::get('/', function () {
 });
 
 Route::prefix('/post') -> group(function () {
-    Route::get('/', function () {
-        return 'Post Index';
-    })->name('post.index');
+    Route::get('/', [PostController::class, 'index'])
+        ->name('post.index');
 
-    Route::get('/create', function () {
-        return 'Post Create';
-    })->name('post.add');
+    Route::get('/create', [PostController::class, 'add'])
+        ->name('post.add');
 
     Route::post('/create', [PostController::class, 'create'])
         ->name('post.create');
 
-    Route::get('/detail/{id}', function (Request $request, $id) {
-        return 'Post detail: ' . $id;
-    })->name('post.detail')->where('id', '[0-9]+');
+    Route::get('/detail/{id}', [PostController::class, 'detail'])
+        ->name('post.detail')->where('id', '[0-9]+');
 
-    Route::get('/update/{id}', function (Request $request, $id) {
-        return 'Post update: ' . $id;
-    })->name('post.edit')->where('id', '[0-9]+');
+    Route::get('/update/{id}', [PostController::class, 'edit'])
+        ->name('post.edit')->where('id', '[0-9]+');
 
-    Route::post('/update/{id}', [PostController::class, 'info'])
+    Route::post('/update/{id}', [PostController::class, 'update'])
         ->name('post.update')->where('id', '[0-9]+');
 
     Route::post('/delete/{id}', [PostController::class, 'delete'])
