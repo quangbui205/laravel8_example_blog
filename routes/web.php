@@ -30,25 +30,31 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::prefix('/post') -> group(function () {
-    Route::get('/', [PostController::class, 'index'])
-        ->name('post.index');
+Route::prefix('/admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    })->name('admin');
 
-    Route::get('/create', [PostController::class, 'add'])
-        ->name('post.add');
+    Route::prefix('/post')->group(function () {
+        Route::get('/', [PostController::class, 'list'])
+            ->name('post.list');
 
-    Route::post('/create', [PostController::class, 'create'])
-        ->name('post.create');
+        Route::get('/create', [PostController::class, 'add'])
+            ->name('post.add');
 
-    Route::get('/detail/{id}', [PostController::class, 'detail'])
-        ->name('post.detail')->where('id', '[0-9]+');
+        Route::post('/create', [PostController::class, 'create'])
+            ->name('post.create');
 
-    Route::get('/update/{id}', [PostController::class, 'edit'])
-        ->name('post.edit')->where('id', '[0-9]+');
+        Route::get('/detail/{id}', [PostController::class, 'detail'])
+            ->name('post.detail')->where('id', '[0-9]+');
 
-    Route::post('/update/{id}', [PostController::class, 'update'])
-        ->name('post.update')->where('id', '[0-9]+');
+        Route::get('/update/{id}', [PostController::class, 'edit'])
+            ->name('post.edit')->where('id', '[0-9]+');
 
-    Route::post('/delete/{id}', [PostController::class, 'delete'])
-        ->name('post.delete')->where('id', '[0-9]+');
+        Route::post('/update/{id}', [PostController::class, 'update'])
+            ->name('post.update')->where('id', '[0-9]+');
+
+        Route::post('/delete/{id}', [PostController::class, 'delete'])
+            ->name('post.delete')->where('id', '[0-9]+');
+    });
 });

@@ -12,13 +12,13 @@ use Illuminate\Support\Facades\View;
 class PostController extends Controller
 {
     /**
-     * Method Post Index
+     * Method Post List
      *
      * @return string
      */
-    public function index()
+    public function list()
     {
-        return 'Post Index Controller';
+        return \view('admin.post.list');
     }
 
     /**
@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function add()
     {
-        return 'Post Add New Controller';
+        return \view('admin.post.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class PostController extends Controller
      */
     public function detail(Request $request, int $id)
     {
-        return 'Post record detail: ' . $id;
+        return \view('admin.post.detail');
     }
 
     /**
@@ -65,7 +65,7 @@ class PostController extends Controller
      */
     public function edit(Request $request, int $id)
     {
-        return 'Post Edit Record: ' . $id;
+        return \view('admin.post.update');
     }
 
     /**

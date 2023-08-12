@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <!-- Basic -->
     <meta charset="utf-8" />
@@ -12,12 +11,11 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Fregg</title>
+    <title>Blog Website</title>
 
     <!-- slider stylesheet -->
     <link rel="stylesheet" type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
-
 
     <!-- font wesome stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
