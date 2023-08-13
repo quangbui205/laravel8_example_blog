@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-Route::prefix('/admin')->group(function () {
+Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
     })->name('admin');
@@ -58,3 +59,5 @@ Route::prefix('/admin')->group(function () {
             ->name('post.delete')->where('id', '[0-9]+');
     });
 });
+
+Auth::routes();

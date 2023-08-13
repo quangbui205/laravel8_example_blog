@@ -30,6 +30,16 @@
                     <a class="nav-link" href="{{ route('post.list') }}">Post</a>
                 </li>
             </ul>
+            <a href="{{route('logout')}}"
+               class="my-2 my-lg-0"
+               style="color: white"
+               onclick="event.preventDefault();
+               document.getElementById('logout-form').submit();">
+                Logout
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
         </div>
     </nav>
     <br>
